@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <title>Výsledky kontroly IBAN</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            max-width: 800px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .result {
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            background-color: #e9f6ff;
+            border-left: 5px solid #0078d4;
+        }
+        .not-found {
+            background-color: #ffecec;
+            border-left: 5px solid #d40000;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #0078d4;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Výsledky kontroly</h1>
+    {% for result in results %}
+        <div class="result {% if 'nie je v zozname' in result %}not-found{% endif %}">
+            {{ result }}
+        </div>
+    {% endfor %}
+    <a href="/">Späť na formulár</a>
+</div>
+</body>
+</html>
