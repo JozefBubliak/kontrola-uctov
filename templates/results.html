@@ -27,8 +27,15 @@
             padding: 12px;
             margin-bottom: 10px;
             border-radius: 8px;
-            background-color: #e9f6ff;
-            border-left: 5px solid #0078d4;
+            font-size: 16px;
+        }
+        .found {
+            background-color: #e6ffe6;
+            border-left: 5px solid #28a745;
+        }
+        .partial {
+            background-color: #f3e6ff;
+            border-left: 5px solid #9b59b6;
         }
         .not-found {
             background-color: #ffecec;
@@ -50,7 +57,15 @@
 <div class="container">
     <h1>Výsledky kontroly</h1>
     {% for result in results %}
-        <div class="result {% if 'nie je v zozname' in result %}not-found{% endif %}">
+        {% set cls = '' %}
+        {% if '✅' in result %}
+            {% set cls = 'found' %}
+        {% elif '🟪' in result %}
+            {% set cls = 'partial' %}
+        {% elif '❌' in result %}
+            {% set cls = 'not-found' %}
+        {% endif %}
+        <div class="result {{ cls }}">
             {{ result }}
         </div>
     {% endfor %}
